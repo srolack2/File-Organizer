@@ -1,0 +1,47 @@
+import os
+import shutil
+
+# Define file type categories and their extensions
+FILE_CATEGORIES = {
+    "Images": [".jpg", ".jpeg", ".png", ".gif", ".bmp"],
+    "Documents": [".pdf", ".docx", ".txt", ".xlsx", ".pptx"],
+    "Videos": [".mp4", ".mkv", ".mov", ".avi"],
+    "Music": [".mp3", ".wav", ".aac"],
+    "Archives": [".zip", ".rar", ".7z", ".tar"],
+    "Scripts": [".py", ".js", ".html", ".css"],
+    "Others": []
+}
+
+def organize_files(directory):
+    """Organize files in the given directory into subfolders by category."""
+    if not os.path.exists(directory):
+        print(f"Directory {directory} does not exist.")
+        return
+
+    # Iterate over files in the directory
+    for filename in os.listdir(directory):
+        filepath = os.path.join(directory, filename)
+
+        # Skip directories
+        if os.path.isdir(filepath):
+            continue
+
+        # Determine the file's category
+        file_extension = os.path.splitext(filename)[1].lower()
+        category = next(
+            (key for key, extensions in FILE_CATEGORIES.items() if file_extension in extensions),
+            "Others"
+        )
+
+        # Create category folder if it doesn't exist
+        category_folder = os.path.join(directory, category)
+        os.makedirs(category_folder, exist_ok=True)
+
+        # Move the file to the category folder
+        shutil.move(filepath, os.path.join(category_folder, filename))
+        print(f"Moved {filename} to {category}")
+
+if __name__ == "__main__":
+    target_directory = input("Enter the directory to organize: ").strip()
+    organize_files(target_directory)
+    print("File organization complete.")
