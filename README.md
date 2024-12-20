@@ -85,7 +85,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Contact
 For any questions or suggestions, feel free to contact:
-- **Name**: Your Name
-- **Email**: your.email@example.com
-- **GitHub**: [yourusername](https://github.com/yourusername)
+- **Name**: Sylvester Rolack II
+- **Email**: srolack2@gmail.com
+- **GitHub**: [srolack2](https://github.com/srolack2)
 
